@@ -25,7 +25,7 @@ class Coadjuvante:
         gene = []
         if not genePai1 and not genePai2:
             for i in range(4):
-                gene.append((random.choice(listaGenes1), random.randint(0, 300)))
+                gene.append((random.choice(listaGenes1), random.randint(0, 600)))
         elif genePai1 and genePai2:
             gp1 = genePai1.gene1.copy()
             gp2 = genePai2.gene1.copy()
@@ -39,7 +39,7 @@ class Coadjuvante:
                 if random.randint(0,1) == 0: #direção
                     utilTupla(gene[random.randint(0,3)], 0, random.choice(listaGenes1))
                 else: #amplitude
-                    utilTupla(gene[random.randint(0,3)], 1, random.randint(0,150))
+                    utilTupla(gene[random.randint(0,3)], 1, random.randint(0,600))
         return gene
 
     def printaGene1(self):
@@ -54,8 +54,10 @@ class Coadjuvante:
         print("------------")
 
     def calculaFit(self):
-        setFit = 1
         coord = (self.x - self.xi, self.y - self.yi)
         if coord[0] < 0 and coord[1] < 0:
-            setFit = -1
-        self.fit = coord[0]*coord[1]*setFit
+            self.fit = -coord[0]*coord[1]
+        else:
+            self.fit = coord[0]*coord[1]
+        #self.fit = 1/(1+self.fit)
+        print(self.fit)
