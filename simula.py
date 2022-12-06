@@ -4,16 +4,20 @@ import random
 import matplotlib.pyplot as plt
 
 cmax = 100
-nmax = 100
+nmax = 1000
 
 coadjs = []
+
+img = plt.imread("mapinha")
+fig, ax = plt.subplots(1, 1)
+
 
 for i in range(cmax):
     coadjs.append(cd.Coadjuvante(random.randint(-400, 400), random.randint(-400,400)))
     #coadjs[i].printaPosicao()
 
 for ger in range(nmax):
-    plt.clf()
+    ax.clear()
     plt.title("Geração " + str(ger))
     # fazer o gene afetar o comportamento
     for _ in range(4):
@@ -46,17 +50,16 @@ for ger in range(nmax):
     coadjs.sort(key=lambda x: x.fit)
     goodPais = []
     for coad in coadjs:
-        coad.printaGene1()
         if coad.fit > 0:
             goodPais.append(coad)
     coadjs.clear()
     for k in range(0, cmax):
         papitos = random.sample(goodPais, 2)
         coadjs.append(cd.Coadjuvante(random.randint(-400, 400), random.randint(-400, 400), papitos[0], papitos[1]))
-    plt.axis([-1000, 1000, -1000, 1000])
-    plt.plot(eixoXfim, eixoYfim, 'r^')
-    plt.plot(eixoX, eixoY, 'gs')
-    plt.pause(3)
+    ax.imshow(img, extent=[-1000, 1000, -1000, 1000])
+    ax.plot(eixoXfim, eixoYfim, 'r^')
+    ax.plot(eixoX, eixoY, 'gs')
+    plt.pause(0.001)
     
 
 plt.show()

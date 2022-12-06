@@ -59,5 +59,5 @@ class Coadjuvante:
             self.fit = -coord[0]*coord[1]
         else:
             self.fit = coord[0]*coord[1]
-        #self.fit = 1/(1+self.fit)
+        self.fit = 1/(1+self.fit)
         print(self.fit)
