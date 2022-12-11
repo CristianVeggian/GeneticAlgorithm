@@ -3,10 +3,12 @@ import Coadjuvante as cd
 import random
 import matplotlib.pyplot as plt
 import numpy as np
+import time
 
 coadMax = 100
 gerMax = 1000
 
+begin = time.time()
 coadjs = []
 
 img = plt.imread("mapa.png")
@@ -53,7 +55,8 @@ for ger in range(gerMax):
     ax.plot(eixoXfim, eixoYfim, 'Dw')
     ax.plot(eixoX, eixoY, '.c')
     plt.pause(0.001)
+    end = time.time()
     
-
+print(end - begin)
 plt.show()
     
